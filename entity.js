@@ -1,3 +1,4 @@
+
 class Entity {
   constructor(hp, attack, position) {
     this.hp = hp;
@@ -7,7 +8,8 @@ class Entity {
   attackEnemy(playerEnemy) {
     playerEnemy.hp -= this.attack;
     if (playerEnemy.hp < 0) {
-      return ture;
+      console.log("Someone died!");
+      return true;
     }
     return false;
   }
@@ -40,7 +42,7 @@ class Player extends Entity {
     if (this.position.y === boardHeight - 1) {
       return false;
     } else {
-      this.position++;
+      this.position.y++;
       return true;
     }
   }
@@ -58,23 +60,28 @@ class Player extends Entity {
       return false;
     } else {
       this.position.x++;
-      return false;
+      return true;
     }
   }
 
   onPropStep(prop) {
-    switch (prop.name) {
-      case "HP":
-        this.hp += 30;
-        break;
-      case "Gun":
-        this.attack += 50;
-        break;
-      case "Sword":
-        this.attack += 20;
-        break;
+    
+    if(prop==="💉"){
+      this.hp+=30;
+      return "HP UP! + 30 HP";
     }
-  }
+    if(prop==="🚩")
+    {
+      return "YOU WON!";
+    }
+    if(prop==="🔪"){
+      this.attack+=30;
+      return "You picked up a knife! attack + 30 ";
+    }
+    if(prop==="🔫"){
+      this.attack+=50;
+      return "You picked up a gun! attack +50";
+    }
 }
-
+}
 export { Player, Enemy };

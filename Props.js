@@ -8,6 +8,7 @@ class HP extends Props {
   constructor(position, name) {
     super(position);
     this.name = name;
+    this.emoji = "💉";
   }
 }
 
@@ -29,4 +30,11 @@ class Knife extends Props {
   }
 }
 
-export { HP, Gun, Knife };
+class CheckPoint extends Props {
+  constructor(position, name) {
+    super(position);
+    this.name = name;
+    this.emoji = "🚩";
+  }
+}
+export { HP, Gun, Knife, CheckPoint };
